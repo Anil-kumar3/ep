@@ -753,39 +753,20 @@ var ImageCaptureComponent = /** @class */ (function () {
         function getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition);
+                //navigator.geolocation.getCurrentPosition(this.showPosition);
             }
             else {
                 var error = "Geolocation is not supported by this browser.";
+                sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire("Address", (error).toString());
             }
         }
         function showPosition(position) {
-            console.log(position);
-            // lat = position.coords.latitude;
-            // lon = position.coords.longitude;
-            sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire("Address", (position.coords.latitude).toString());
+            // this.lat = position.coords.latitude;
+            // this.lon = position.coords.longitude;
+            sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire((position.coords.longitude).toString(), (position.coords.latitude).toString());
         }
+        ;
         getLocation();
-        //   if (window.navigator && window.navigator.geolocation) {
-        //     window.navigator.geolocation.getCurrentPosition(
-        //         position => {
-        //             this.geolocationPosition = position;
-        //                 // console.log(this.geolocationPosition);
-        //         },
-        //         error => {
-        //             switch (error.code) {
-        //                 case 1:
-        //                     console.log('Permission Denied');
-        //                     break;
-        //                 case 2:
-        //                     console.log('Position Unavailable');
-        //                     break;
-        //                 case 3:
-        //                     console.log('Timeout');
-        //                     break;
-        //             }
-        //         }
-        //     );
-        // };
     };
     ImageCaptureComponent.prototype.readURL = function (event) {
         var _this = this;
@@ -799,19 +780,19 @@ var ImageCaptureComponent = /** @class */ (function () {
         }
     };
     ImageCaptureComponent.prototype.onUpload = function () {
+        console.log("Latitude ----> " + this.lat);
         // console.log(this.file);
         // console.log(this.geolocationPosition.coords);
         // console.log(this.geolocationPosition.coords.latitude);
         // console.log(this.geolocationPosition.coords.longitude);
         //Swal.fire("Address", (this.geolocationPosition.coords.longitude).toString());
-        var _this = this;
         // this.dataservice.getGoogleMapsresult(this.geolocationPosition.coords.latitude,this.geolocationPosition.coords.longitude).subscribe(result =>{
-        this.dataservice.getGoogleMapsresult(12.9699851, 80.2503848).subscribe(function (result) {
-            //Swal.fire("Done", "Subscribed into service");
-            // Swal.fire("Address", result.results[0].formatted_address);
-            _this.data = result;
-            _this.address = result.results[0].formatted_address;
-        });
+        // this.dataservice.getGoogleMapsresult(this.lat,this.lon).subscribe(result =>{
+        //   //Swal.fire("Done", "Subscribed into service");
+        //    Swal.fire("Address", result.error_message);
+        //      this.data = result;
+        //   this.address = result.error_message;
+        //    });
         //this.address = "10-337,Kuber appartments, 6th Main Rd, Vijaya Nagar, Velachery, Chennai, Tamil Nadu 600042, India";
     };
     ImageCaptureComponent = __decorate([
