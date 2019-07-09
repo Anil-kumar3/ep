@@ -750,18 +750,21 @@ var ImageCaptureComponent = /** @class */ (function () {
         this.file = null;
     }
     ImageCaptureComponent.prototype.ngOnInit = function () {
-        var successHandler = function (position) {
-            sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire("Latitude", (position.coords.latitude).toString());
-            sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire("longitude", (position.coords.latitude).toString());
-            // alert(position.coords.latitude); 
-            // alert(position.coords.longitude); 
-        };
-        var errorHandler = function (errorObj) {
-            // alert(errorObj.code + ": " + errorObj.message); 
-            // alert("something wrong take this lat " + "26.0546106 ); 
-            // alert("something wrong take this lng " +-98.3939791); 
-        };
-        navigator.geolocation.getCurrentPosition(successHandler, errorHandler, { enableHighAccuracy: true, maximumAge: 10000 });
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+            else {
+                var error = "Geolocation is not supported by this browser.";
+            }
+        }
+        function showPosition(position) {
+            console.log(position);
+            // lat = position.coords.latitude;
+            // lon = position.coords.longitude;
+            sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire("Address", (position.coords.latitude).toString());
+        }
+        getLocation();
         //   if (window.navigator && window.navigator.geolocation) {
         //     window.navigator.geolocation.getCurrentPosition(
         //         position => {
@@ -800,13 +803,15 @@ var ImageCaptureComponent = /** @class */ (function () {
         // console.log(this.geolocationPosition.coords);
         // console.log(this.geolocationPosition.coords.latitude);
         // console.log(this.geolocationPosition.coords.longitude);
-        sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire("Address", (this.geolocationPosition.coords.longitude).toString());
+        //Swal.fire("Address", (this.geolocationPosition.coords.longitude).toString());
+        var _this = this;
         // this.dataservice.getGoogleMapsresult(this.geolocationPosition.coords.latitude,this.geolocationPosition.coords.longitude).subscribe(result =>{
-        //   //Swal.fire("Done", "Subscribed into service");
-        //   // Swal.fire("Address", result.results[0].formatted_address);
-        //      this.data = result;
-        //   this.address = result.results[0].formatted_address;
-        //    });
+        this.dataservice.getGoogleMapsresult(12.9699851, 80.2503848).subscribe(function (result) {
+            //Swal.fire("Done", "Subscribed into service");
+            // Swal.fire("Address", result.results[0].formatted_address);
+            _this.data = result;
+            _this.address = result.results[0].formatted_address;
+        });
         //this.address = "10-337,Kuber appartments, 6th Main Rd, Vijaya Nagar, Velachery, Chennai, Tamil Nadu 600042, India";
     };
     ImageCaptureComponent = __decorate([
