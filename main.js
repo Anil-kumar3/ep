@@ -779,7 +779,6 @@ var ImageCaptureComponent = /** @class */ (function () {
         }
     };
     ImageCaptureComponent.prototype.onUpload = function () {
-        var _this = this;
         console.log("Latitude ----> " + this.lat);
         // console.log(this.file);
         // console.log(this.geolocationPosition.coords);
@@ -787,20 +786,20 @@ var ImageCaptureComponent = /** @class */ (function () {
         // console.log(this.geolocationPosition.coords.longitude);
         //Swal.fire("Address", (this.geolocationPosition.coords.longitude).toString());
         // this.dataservice.getGoogleMapsresult(this.geolocationPosition.coords.latitude,this.geolocationPosition.coords.longitude).subscribe(result =>{
-        this.dataservice.getGoogleMapsresult(this.lat, this.lon).subscribe(function (result) {
-            sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire((_this.lat).toString(), (_this.lon).toString());
-            return;
-            // if(result.results){
-            //   Swal.fire("Address", result.results[0].formatted_address);
-            //    this.data = result;
-            //  this.address = result.results[0].formatted_address;
-            // }
-            // else{
-            //   Swal.fire("Ooops...!!!", result.error_message);
-            //    this.data = result;
-            // this.address = result.error_message;
-            // }
-        });
+        sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire((this.lat).toString(), (this.lon).toString());
+        return;
+        // this.dataservice.getGoogleMapsresult(this.lat,this.lon).subscribe(result =>{
+        //   // if(result.results){
+        //   //   Swal.fire("Address", result.results[0].formatted_address);
+        //   //    this.data = result;
+        //   //  this.address = result.results[0].formatted_address;
+        //   // }
+        //   // else{
+        //   //   Swal.fire("Ooops...!!!", result.error_message);
+        //   //    this.data = result;
+        //   // this.address = result.error_message;
+        //   // }
+        //    });
         //this.address = "10-337,Kuber appartments, 6th Main Rd, Vijaya Nagar, Velachery, Chennai, Tamil Nadu 600042, India";
     };
     ImageCaptureComponent = __decorate([
@@ -1293,9 +1292,6 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.getGitUsersbyid = function (name) {
         return this.http.get(this.giturl + '/' + name);
-    };
-    DataService.prototype.getGoogleMapsresult = function (lat, lon) {
-        return this.http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lon + "&key=AIzaSyAxBm68HZLg514natiAMd4ET9-LLoGSzuA");
     };
     DataService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
