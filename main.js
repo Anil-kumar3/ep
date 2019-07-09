@@ -787,7 +787,7 @@ var ImageCaptureComponent = /** @class */ (function () {
         // console.log(this.geolocationPosition.coords);
         // console.log(this.geolocationPosition.coords.latitude);
         // console.log(this.geolocationPosition.coords.longitude);
-        sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire("Address", "Alert ");
+        sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire("Address", (this.geolocationPosition.coords.longitude).toString());
         // this.dataservice.getGoogleMapsresult(this.geolocationPosition.coords.latitude,this.geolocationPosition.coords.longitude).subscribe(result =>{
         //   //Swal.fire("Done", "Subscribed into service");
         //   // Swal.fire("Address", result.results[0].formatted_address);
