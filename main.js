@@ -750,26 +750,39 @@ var ImageCaptureComponent = /** @class */ (function () {
         this.file = null;
     }
     ImageCaptureComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        if (window.navigator && window.navigator.geolocation) {
-            window.navigator.geolocation.getCurrentPosition(function (position) {
-                _this.geolocationPosition = position;
-                // console.log(this.geolocationPosition);
-            }, function (error) {
-                switch (error.code) {
-                    case 1:
-                        console.log('Permission Denied');
-                        break;
-                    case 2:
-                        console.log('Position Unavailable');
-                        break;
-                    case 3:
-                        console.log('Timeout');
-                        break;
-                }
-            });
-        }
-        ;
+        var successHandler = function (position) {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire("Latitude", (position.coords.latitude).toString());
+            sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire("longitude", (position.coords.latitude).toString());
+            // alert(position.coords.latitude); 
+            // alert(position.coords.longitude); 
+        };
+        var errorHandler = function (errorObj) {
+            // alert(errorObj.code + ": " + errorObj.message); 
+            // alert("something wrong take this lat " + "26.0546106 ); 
+            // alert("something wrong take this lng " +-98.3939791); 
+        };
+        navigator.geolocation.getCurrentPosition(successHandler, errorHandler, { enableHighAccuracy: true, maximumAge: 10000 });
+        //   if (window.navigator && window.navigator.geolocation) {
+        //     window.navigator.geolocation.getCurrentPosition(
+        //         position => {
+        //             this.geolocationPosition = position;
+        //                 // console.log(this.geolocationPosition);
+        //         },
+        //         error => {
+        //             switch (error.code) {
+        //                 case 1:
+        //                     console.log('Permission Denied');
+        //                     break;
+        //                 case 2:
+        //                     console.log('Position Unavailable');
+        //                     break;
+        //                 case 3:
+        //                     console.log('Timeout');
+        //                     break;
+        //             }
+        //         }
+        //     );
+        // };
     };
     ImageCaptureComponent.prototype.readURL = function (event) {
         var _this = this;
