@@ -713,7 +713,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<main-nav>\n    <!-- <input type=\"file\" capture=\"camera\" accept=\"image/*\" id=\"cameraInput\" name=\"cameraInput\" (change)=\"onFileSelected($event)\">\n<button type=\"button\" (click)=\"onUpload()\">Upload File</button>\n\n\n      <img id=\"blah\" src=\"#\" alt=\"your image\" > -->\n\n      <input type='file' capture=\"camera\" accept=\"image/*\" id=\"cameraInput\" name=\"cameraInput\" (change)=\"readURL($event);\" />\n      <button type=\"button\" (click)=\"onUpload()\">Upload File</button>\n\n<br>\n<br>\n<img id=\"blah\" [src]=\"imageSrc || 'http://placehold.it/180'\" alt=\"your image\" class=\"img-responsive\"/>\n\n<h1>{{address}}</h1>    \n\n</main-nav>"
+module.exports = "\n\n<main-nav>\n    <!-- <input type=\"file\" capture=\"camera\" accept=\"image/*\" id=\"cameraInput\" name=\"cameraInput\" (change)=\"onFileSelected($event)\">\n<button type=\"button\" (click)=\"onUpload()\">Upload File</button>\n\n\n      <img id=\"blah\" src=\"#\" alt=\"your image\" > -->\n\n      <input type='file' capture=\"camera\" accept=\"image/*\" id=\"cameraInput\" name=\"cameraInput\" (change)=\"readURL($event);\" />\n      <button type=\"button\" (click)=\"onUpload()\">Upload File</button>\n\n<br>\n<br>\n<img id=\"blah\" [src]=\"imageSrc || 'http://placehold.it/180'\" alt=\"your image\" width=\"80\" height=\"80\"/>\n\n<h1>{{address}}</h1>    \n\n</main-nav>"
 
 /***/ }),
 
@@ -787,13 +787,13 @@ var ImageCaptureComponent = /** @class */ (function () {
         // console.log(this.geolocationPosition.coords);
         // console.log(this.geolocationPosition.coords.latitude);
         // console.log(this.geolocationPosition.coords.longitude);
-        var _this = this;
-        this.dataservice.getGoogleMapsresult(this.geolocationPosition.coords.latitude, this.geolocationPosition.coords.longitude).subscribe(function (result) {
-            console.log(result.results[0].formatted_address);
-            sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire("Address", result.results[0].formatted_address);
-            _this.data = result;
-            _this.address = result.results[0].formatted_address;
-        });
+        sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire("Address", "Alert ");
+        // this.dataservice.getGoogleMapsresult(this.geolocationPosition.coords.latitude,this.geolocationPosition.coords.longitude).subscribe(result =>{
+        //   //Swal.fire("Done", "Subscribed into service");
+        //   // Swal.fire("Address", result.results[0].formatted_address);
+        //      this.data = result;
+        //   this.address = result.results[0].formatted_address;
+        //    });
         //this.address = "10-337,Kuber appartments, 6th Main Rd, Vijaya Nagar, Velachery, Chennai, Tamil Nadu 600042, India";
     };
     ImageCaptureComponent = __decorate([
