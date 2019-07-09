@@ -788,17 +788,18 @@ var ImageCaptureComponent = /** @class */ (function () {
         //Swal.fire("Address", (this.geolocationPosition.coords.longitude).toString());
         // this.dataservice.getGoogleMapsresult(this.geolocationPosition.coords.latitude,this.geolocationPosition.coords.longitude).subscribe(result =>{
         this.dataservice.getGoogleMapsresult(this.lat, this.lon).subscribe(function (result) {
-            //Swal.fire("Done", "Subscribed into service");
-            if (result.results) {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire("Address", result.results[0].formatted_address);
-                _this.data = result;
-                _this.address = result.results[0].formatted_address;
-            }
-            else {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire("Ooops...!!!", result.error_message);
-                _this.data = result;
-                _this.address = result.error_message;
-            }
+            sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire((_this.lat).toString(), (_this.lon).toString());
+            return;
+            // if(result.results){
+            //   Swal.fire("Address", result.results[0].formatted_address);
+            //    this.data = result;
+            //  this.address = result.results[0].formatted_address;
+            // }
+            // else{
+            //   Swal.fire("Ooops...!!!", result.error_message);
+            //    this.data = result;
+            // this.address = result.error_message;
+            // }
         });
         //this.address = "10-337,Kuber appartments, 6th Main Rd, Vijaya Nagar, Velachery, Chennai, Tamil Nadu 600042, India";
     };
