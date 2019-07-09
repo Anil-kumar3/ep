@@ -392,7 +392,7 @@ var BarCodeScannerComponent = /** @class */ (function () {
     BarCodeScannerComponent.prototype.ngAfterViewInit = function () {
     };
     BarCodeScannerComponent.prototype.selected = function () {
-        console.log(this.selectedLevel);
+        // console.log(this.selectedLevel);
         this.barecodeScanner.start();
     };
     BarCodeScannerComponent.prototype.onValueChanges = function (result) {
@@ -713,7 +713,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<main-nav>\n    <!-- <input type=\"file\" capture=\"camera\" accept=\"image/*\" id=\"cameraInput\" name=\"cameraInput\" (change)=\"onFileSelected($event)\">\n<button type=\"button\" (click)=\"onUpload()\">Upload File</button>\n\n\n      <img id=\"blah\" src=\"#\" alt=\"your image\" > -->\n\n      <input type='file' capture=\"camera\" accept=\"image/*\" id=\"cameraInput\" name=\"cameraInput\" (change)=\"readURL($event);\" />\n      <button type=\"button\" (click)=\"onUpload()\">Upload File</button>\n\n<br>\n<br>\n<img id=\"blah\" [src]=\"imageSrc || 'http://placehold.it/180'\" alt=\"your image\" />\n\n</main-nav>"
+module.exports = "\n\n<main-nav>\n    <!-- <input type=\"file\" capture=\"camera\" accept=\"image/*\" id=\"cameraInput\" name=\"cameraInput\" (change)=\"onFileSelected($event)\">\n<button type=\"button\" (click)=\"onUpload()\">Upload File</button>\n\n\n      <img id=\"blah\" src=\"#\" alt=\"your image\" > -->\n\n      <input type='file' capture=\"camera\" accept=\"image/*\" id=\"cameraInput\" name=\"cameraInput\" (change)=\"readURL($event);\" />\n      <button type=\"button\" (click)=\"onUpload()\">Upload File</button>\n\n<br>\n<br>\n<img id=\"blah\" [src]=\"imageSrc || 'http://placehold.it/180'\" alt=\"your image\" class=\"img-responsive\"/>\n\n<h1>{{address}}</h1>    \n\n</main-nav>"
 
 /***/ }),
 
@@ -728,6 +728,7 @@ module.exports = "\n\n<main-nav>\n    <!-- <input type=\"file\" capture=\"camera
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ImageCaptureComponent", function() { return ImageCaptureComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/data.service */ "./src/app/services/data.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -738,11 +739,34 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var ImageCaptureComponent = /** @class */ (function () {
-    function ImageCaptureComponent() {
+    function ImageCaptureComponent(dataservice) {
+        this.dataservice = dataservice;
+        this.data = [];
         this.file = null;
     }
     ImageCaptureComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (window.navigator && window.navigator.geolocation) {
+            window.navigator.geolocation.getCurrentPosition(function (position) {
+                _this.geolocationPosition = position;
+                // console.log(this.geolocationPosition);
+            }, function (error) {
+                switch (error.code) {
+                    case 1:
+                        console.log('Permission Denied');
+                        break;
+                    case 2:
+                        console.log('Position Unavailable');
+                        break;
+                    case 3:
+                        console.log('Timeout');
+                        break;
+                }
+            });
+        }
+        ;
     };
     ImageCaptureComponent.prototype.readURL = function (event) {
         var _this = this;
@@ -756,7 +780,17 @@ var ImageCaptureComponent = /** @class */ (function () {
         }
     };
     ImageCaptureComponent.prototype.onUpload = function () {
-        console.log(this.file);
+        // console.log(this.file);
+        // console.log(this.geolocationPosition.coords);
+        // console.log(this.geolocationPosition.coords.latitude);
+        // console.log(this.geolocationPosition.coords.longitude);
+        var _this = this;
+        this.dataservice.getGoogleMapsresult(this.geolocationPosition.coords.latitude, this.geolocationPosition.coords.longitude).subscribe(function (result) {
+            console.log(result.results[0].formatted_address);
+            _this.data = result;
+            _this.address = result.results[0].formatted_address;
+        });
+        //this.address = "10-337,Kuber appartments, 6th Main Rd, Vijaya Nagar, Velachery, Chennai, Tamil Nadu 600042, India";
     };
     ImageCaptureComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -764,7 +798,7 @@ var ImageCaptureComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./image-capture.component.html */ "./src/app/components/image-capture/image-capture.component.html"),
             styles: [__webpack_require__(/*! ./image-capture.component.css */ "./src/app/components/image-capture/image-capture.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_services_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"]])
     ], ImageCaptureComponent);
     return ImageCaptureComponent;
 }());
@@ -1249,6 +1283,9 @@ var DataService = /** @class */ (function () {
     DataService.prototype.getGitUsersbyid = function (name) {
         return this.http.get(this.giturl + '/' + name);
     };
+    DataService.prototype.getGoogleMapsresult = function (lat, lon) {
+        return this.http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lon + "&key=AIzaSyAxBm68HZLg514natiAMd4ET9-LLoGSzuA");
+    };
     DataService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
@@ -1322,7 +1359,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Jagadeesh\Projects\LeaRNING\EmployeePortal\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\Jagadeesh\Projects\LeaRNING\Angular\EmployeePortal\src\main.ts */"./src/main.ts");
 
 
 /***/ })
