@@ -1,6 +1,6 @@
 {
-    "name": "Food Ninja",
-    "short_name": "FoodNinja",
+    "name": "Employee Portal",
+    "short_name": "GETEMP",
     "start_url": "https://jnjaga24.github.io/ep/",
     "display": "standalone",
     "background_color": "#FFE9D2",
