@@ -8,12 +8,12 @@
     "orientation": "portrait-primary",
     "icons": [
         {
-          "src": "/images/company.PNG",
+          "src": "/images/company.png",
           "type": "image/png",
           "sizes": "192x192"
         },
         {
-          "src": "/images/companys.PNG",
+          "src": "/images/companys.png",
           "type": "image/png",
           "sizes": "512x512"
         }
