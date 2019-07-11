@@ -130,7 +130,7 @@ module.exports = "/*!\n *  Font Awesome 4.7.0 by @davegandy - http://fontawesome
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* You can add global styles to this file, and also import other style files */\r\nhtml,\r\nbody {\r\n     height:100%;\r\n     margin: 0;\r\n     }\r\n\r\n"
+module.exports = "/* You can add global styles to this file, and also import other style files */\r\nhtml,\r\nbody {\r\n     height:100%;\r\n     margin: 0;\r\n     overscroll-behavior-y: contain;\r\n     }\r\n\r\n     \r\n"
 
 /***/ }),
 
