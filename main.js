@@ -358,7 +358,7 @@ module.exports = ".example-form {\r\n    min-width: 150px;\r\n    max-width: 500
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<main-nav>\n\n  \n  <select name=\"types\" [(ngModel)]=\"selectedLevel\" (change)=\"selected()\">\n    <option value=\"code_128\">code_128_reader</option>\n    <option value=\"ean\">ean_reader</option>\n    <option value=\"code_39\">code_39_reader</option>\n    <option value=\"code_39_vin\">code_39_vin_reader</option>\n    <option value=\"codebar\">codabar_reader</option>\n    <option value=\"upc\">upc_reader</option>\n    <option value=\"upc_e\">upc_e_reader</option>\n    <option value=\"12of5\">i2of5_reader</option>\n  </select>\n\n\n\n\n<barcode-scanner-livestream  type=\"{{selectedLevel}}\" (valueChanges)=\"onValueChanges($event)\"></barcode-scanner-livestream>\n  \n  <div [hidden]=\"!barcodeValue\">\n      {{barcodeValue}}\n  </div>\n\n</main-nav>\n\n"
+module.exports = "<main-nav>\n\n  \n  <!-- <select name=\"types\" [(ngModel)]=\"selectedLevel\" (change)=\"selected()\">\n    <option value=\"code_128\">code_128_reader</option>\n    <option value=\"ean\">ean_reader</option>\n    <option value=\"code_39\">code_39_reader</option>\n    <option value=\"code_39_vin\">code_39_vin_reader</option>\n    <option value=\"codebar\">codabar_reader</option>\n    <option value=\"upc\">upc_reader</option>\n    <option value=\"upc_e\">upc_e_reader</option>\n    <option value=\"12of5\">i2of5_reader</option>\n  </select> -->\n\n\n  <form>\n \n    <mat-form-field>\n      <mat-label>Select QR Code Types</mat-label>\n      <mat-select [(ngModel)]=\"selectedValue\" name=\"types\" (selectionChange)=\"selected()\">\n        <mat-option  value=\"code_128\">\n          code_128\n        </mat-option>\n        <mat-option  value=\"code_39\">\n          code_39\n        </mat-option>\n        <mat-option  value=\"ean\">\n          ean\n        </mat-option>\n        <mat-option  value=\"code_39_vin\">\n          code_39_vin\n        </mat-option>\n        <mat-option  value=\"codabar\">\n          codabar_\n        </mat-option>\n        <mat-option  value=\"upc\">\n          upc\n        </mat-option>\n        <mat-option  value=\"upc_e\">\n          upc_e\n        </mat-option>\n     \n      </mat-select>\n    </mat-form-field>\n    <!-- <p> Selected food: {{selectedValue}} </p> -->\n  \n    <p> Selected BarCode Type: {{selectedQr}} </p>\n  </form>\n\n\n\n\n<barcode-scanner-livestream  type=\"{{selectedLevel}}\" (valueChanges)=\"onValueChanges($event)\"></barcode-scanner-livestream>\n  \n  <div [hidden]=\"!barcodeValue\">\n      {{barcodeValue}}\n  </div>\n\n</main-nav>\n\n"
 
 /***/ }),
 
@@ -392,7 +392,9 @@ var BarCodeScannerComponent = /** @class */ (function () {
     BarCodeScannerComponent.prototype.ngAfterViewInit = function () {
     };
     BarCodeScannerComponent.prototype.selected = function () {
+        console.log("Selected");
         // console.log(this.selectedLevel);
+        this.selectedQr = this.selectedValue;
         this.barecodeScanner.start();
     };
     BarCodeScannerComponent.prototype.onValueChanges = function (result) {
@@ -752,7 +754,8 @@ var ImageCaptureComponent = /** @class */ (function () {
         this.lon = 0;
         this.getLocation();
     }
-    ImageCaptureComponent.prototype.ngOnInit = function () { };
+    ImageCaptureComponent.prototype.ngOnInit = function () {
+    };
     ImageCaptureComponent.prototype.getLocation = function () {
         var _this = this;
         if (navigator.geolocation) {
@@ -789,16 +792,16 @@ var ImageCaptureComponent = /** @class */ (function () {
         sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire((this.lat).toString(), (this.lon).toString());
         return;
         // this.dataservice.getGoogleMapsresult(this.lat,this.lon).subscribe(result =>{
-        //   // if(result.results){
-        //   //   Swal.fire("Address", result.results[0].formatted_address);
-        //   //    this.data = result;
-        //   //  this.address = result.results[0].formatted_address;
-        //   // }
-        //   // else{
-        //   //   Swal.fire("Ooops...!!!", result.error_message);
-        //   //    this.data = result;
-        //   // this.address = result.error_message;
-        //   // }
+        // if(result.results){
+        //   Swal.fire("Address", result.results[0].formatted_address);
+        //    this.data = result;
+        //  this.address = result.results[0].formatted_address;
+        // }
+        // else{
+        //   Swal.fire("Ooops...!!!", result.error_message);
+        //    this.data = result;
+        // this.address = result.error_message;
+        // }
         //    });
         //this.address = "10-337,Kuber appartments, 6th Main Rd, Vijaya Nagar, Velachery, Chennai, Tamil Nadu 600042, India";
     };
@@ -1198,7 +1201,7 @@ var QrCodeReader = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".sidenav-container {\r\n  height: 100%;\r\n}\r\n\r\n.sidenav {\r\n  width: 200px;\r\n  box-shadow: 3px 0 6px rgba(0,0,0,.24);\r\n}\r\n\r\n.is-active {\r\n  background-color: cyan;\r\n}\r\n\r\n.mat-tab-group {\r\n  margin-bottom: 48px;\r\n}\r\n\r\n.title-center {\r\n  margin: 0 auto;\r\n}"
+module.exports = ".sidenav-container {\r\n  height: 100%;\r\n}\r\n\r\n.sidenav {\r\n  width: 200px;\r\n  box-shadow: 3px 0 6px rgba(0,0,0,.24);\r\n}\r\n\r\n.is-active {\r\n  background-color: cyan;\r\n}\r\n\r\n.mat-tab-group {\r\n  margin-bottom: 48px;\r\n}\r\n\r\n.title-center {\r\n  margin: 0 auto;\r\n}\r\n\r\n/* .mat-drawer {\r\n  background-color: rgba(162, 175, 37, 0.2);\r\n  color: rgba(0,0,0,.87);\r\n} */\r\n\r\n\r\n"
 
 /***/ }),
 
