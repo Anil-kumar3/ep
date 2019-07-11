@@ -1,19 +1,19 @@
 {
     "name": "Food Ninja",
     "short_name": "FoodNinja",
-    "start_url": "./index.html",
+    "start_url": "https://jnjaga24.github.io/ep/",
     "display": "standalone",
     "background_color": "#FFE9D2",
     "theme_color": "#FFE1C4",
     "orientation": "portrait-primary",
     "icons": [
         {
-          "src": "/images/company.png",
+          "src": "https://raw.githubusercontent.com/jnjaga24/ep/master/images/company.png",
           "type": "image/png",
           "sizes": "192x192"
         },
         {
-          "src": "/images/companys.png",
+          "src": "https://raw.githubusercontent.com/jnjaga24/ep/master/images/companys.png",
           "type": "image/png",
           "sizes": "512x512"
         }
