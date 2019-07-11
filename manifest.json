@@ -1,0 +1,21 @@
+{
+    "name" :"EmployeePortal",
+    "short_name" : "Portal",
+    "start_url" : "/index.html",
+    "display" :"standalone" ,
+    "background_color":"#FFE9D2",
+    "theme_color":"#FFE1C4",
+    "orientation":"portrait-primary",
+    "icons": [
+        {
+          "src": "/images/company.PNG",
+          "type": "image/png",
+          "sizes": "192x192"
+        },
+        {
+          "src": "/images/companys.PNG",
+          "type": "image/png",
+          "sizes": "512x512"
+        }
+      ]
+}
